@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ShrunkenButton">
+        <attr name="btn_clicked_state_percent" format="integer"/>
+        <attr name="btn_duration_in_millis" format="integer"/>
+    </declare-styleable>
+
+    <declare-styleable name="ShrunkenCheckBox">
+        <attr name="cb_clicked_state_percent" format="integer"/>
+        <attr name="cb_duration_in_millis" format="integer"/>
+    </declare-styleable>
+
+    <declare-styleable name="ShrunkenEditText">
+        <attr name="et_clicked_state_percent" format="integer"/>
+        <attr name="et_duration_in_millis" format="integer"/>
+    </declare-styleable>
+
+    <declare-styleable name="ShrunkenImageButton">
+        <attr name="ib_clicked_state_percent" format="integer"/>
+        <attr name="ib_duration_in_millis" format="integer"/>
+    </declare-styleable>
+
+    <declare-styleable name="ShrunkenRadioButton">
+        <attr name="rb_clicked_state_percent" format="integer"/>
+        <attr name="rb_duration_in_millis" format="integer"/>
+    </declare-styleable>
+
+    <declare-styleable name="ShrunkenSwitch">
+        <attr name="switch_clicked_state_percent" format="integer"/>
+        <attr name="switch_duration_in_millis" format="integer"/>
+    </declare-styleable>
+
+    <declare-styleable name="ShrunkenToggleButton">
+        <attr name="tb_clicked_state_percent" format="integer"/>
+        <attr name="tb_duration_in_millis" format="integer"/>
+    </declare-styleable>
+</resources>

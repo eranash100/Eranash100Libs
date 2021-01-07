@@ -1,0 +1,3 @@
+include ':ShrunkenViews'
+include ':app'
+rootProject.name = "Eranash100Libs"
