@@ -30,4 +30,4 @@ STEP 2: Go to your app gradle ("build.gradle(app)")
 
     implementation 'com.github.eranash100:Eranash100Libs:1.0.0'
     
-And you done!
+And the implementation done!
