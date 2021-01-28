@@ -28,6 +28,6 @@ STEP 2: Go to your app gradle ("build.gradle(app)")
 
 2.2: Add the line below to "dependencies" section
 
-    implementation 'com.github.eranash100:Eranash100Libs:1.0.0'
+    implementation 'com.github.eranash100:Eranash100Libs:2.0.0'
     
 And the implementation done!
