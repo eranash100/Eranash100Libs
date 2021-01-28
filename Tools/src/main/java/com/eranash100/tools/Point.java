@@ -78,9 +78,9 @@ public class Point
         return (this.x >= leftBound && this.x <= rightBound);
     }
 
-    public boolean isYInBounds(int topBound, int bottomBound)
+    public boolean isYInBounds(int bottomBound, int topBound)
     {
-        return (this.y <= topBound && this.y >= bottomBound);
+        return (this.y >= bottomBound && this.y <= topBound);
     }
 
     public boolean isInBounds(Point topLeft, Point bottomRight)
