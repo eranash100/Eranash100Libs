@@ -110,9 +110,9 @@ public class Point
 
     public boolean isIn2DArrayBounds(Object[][] arr)
     {
-        if(this.x > arr.length)
+        if(this.x >= arr.length || this.x < 0)
             return false;
-        if(this.y > arr[this.x].length)
+        if(this.y >= arr[this.x].length || this.y < 0)
             return false;
         return true;
     }
