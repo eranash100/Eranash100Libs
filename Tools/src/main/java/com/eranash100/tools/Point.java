@@ -75,26 +75,20 @@ public class Point
 
     public boolean isXInBounds(int leftBound, int rightBound)
     {
-        return (this.x > leftBound && this.x < rightBound);
+        return (this.x >= leftBound && this.x <= rightBound);
     }
 
     public boolean isYInBounds(int topBound, int bottomBound)
     {
-        return (this.y < topBound && this.y > bottomBound);
+        return (this.y <= topBound && this.y >= bottomBound);
     }
 
     public boolean isInBounds(Point topLeft, Point bottomRight)
     {
-        if(this.x < topLeft.x)
+        if(!this.isXInBounds(topLeft.x, bottomRight.x))
             return false;
-        if(this.y < topLeft.y)
+        if(!this.isYInBounds(topLeft.y, bottomRight.y))
             return false;
-
-        if(this.x > bottomRight.x)
-            return false;
-        if(this.y > bottomRight.y)
-            return false;
-
         return true;
     }
 
@@ -103,18 +97,18 @@ public class Point
         return this.isInBounds(new Point(rect.left, rect.top), new Point(rect.right, rect.bottom));
     }
 
-    public boolean isInsideCircle(Point point, int circleRadius)
-    {
-        return (this.getDistanceTo(point) <= circleRadius);
-    }
-
     public boolean isIn2DArrayBounds(Object[][] arr)
     {
-        if(this.x >= arr.length || this.x < 0)
+        if(!this.isXInBounds(0, arr.length - 1))
             return false;
-        if(this.y >= arr[this.x].length || this.y < 0)
+        if(!this.isYInBounds(0, arr[this.x].length - 1))
             return false;
         return true;
+    }
+
+    public boolean isInsideCircle(Point circleCenter, int circleRadius)
+    {
+        return (this.getDistanceTo(circleCenter) <= circleRadius);
     }
 
     /**
