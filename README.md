@@ -4,7 +4,7 @@ This is my library
 
 How to implement the library?
 
-STEP 1: Go to your project gradle ("build.gradle(<ProjectName>)")
+STEP 1: Go to your project gradle ("build.gradle(<ProjectName</>)")
     
 1.2: Add the line below to the "allprojects" section -> "repositories" section
 
@@ -24,10 +24,13 @@ Its should look like this:
         }
     }
 
+
 STEP 2: Go to your app gradle ("build.gradle(app)")
 
 2.2: Add the line below to "dependencies" section
 
-    implementation 'com.github.eranash100:Eranash100Libs:2.0.0'
+    implementation 'com.github.eranash100:Eranash100Libs:3.0.0'
     
-And the implementation done!
+STEP 3: Click on "Sync Now" nearby the top right corner
+    
+And the implementation done! (;
