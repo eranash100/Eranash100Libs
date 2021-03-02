@@ -4,7 +4,7 @@ This is my library
 
 How to implement the library?
 
-STEP 1: Go to your project gradle ("build.gradle(<ProjectName</>)")
+STEP 1: Go to your project gradle ("build.gradle( < ProjectName > )")
     
 1.2: Add the line below to the "allprojects" section -> "repositories" section
 
