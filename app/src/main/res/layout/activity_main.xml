@@ -13,8 +13,9 @@
         android:layout_marginTop="32dp"
         android:text="Click Me\n(I Can Shrink)"
         android:textAllCaps="false"
-        app:cb_clicked_state_percent="95"
-        app:cb_duration_in_millis="150"
+        app:btn_clicked_state_percent="95"
+        app:btn_duration_in_millis="150"
+        app:btn_idle_animation="true"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -49,6 +50,7 @@
         android:src="@drawable/ic_launcher_background"
         app:ib_clicked_state_percent="95"
         app:ib_duration_in_millis="100"
+        app:ib_idle_animation="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/shrunkenEditText" />

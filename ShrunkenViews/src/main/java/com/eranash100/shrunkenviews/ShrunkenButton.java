@@ -4,17 +4,27 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
-import android.widget.Button;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import androidx.annotation.IntRange;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
-public class ShrunkenButton extends Button
+public class ShrunkenButton extends androidx.appcompat.widget.AppCompatButton
 {
+    private static final int DEFAULT_CLICKED_STATE_PERCENTAGE = 90;
+    private static final int DEFAULT_DURATION_IN_MILLIS = 100;
+    private static final boolean DEFAULT_IDLE_ANIMATION_ENABLE = false;
+
     private float clickedStatePercentage; //The clicked state scale percentage.
     private int durationInMillis; //The duration(IN MILLIS) of the scale animation (The actual time until the view get to his clicked state).
+    private boolean isIdleAnimationEnabled;
+
+    private Animation idleAnimation;
 
     /**
      * A constructor for dynamic declaration.
@@ -33,12 +43,18 @@ public class ShrunkenButton extends Button
      * @param context                Context in purpose to initiate the view.
      * @param clickedStatePercentage The scale percentage of clicked state.
      * @param durationInMillis       The duration of scale animation.
+     * @param isIdleAnimationEnabled Tells if idle animation enabled or not.
      */
-    public ShrunkenButton(Context context, int clickedStatePercentage, int durationInMillis)
+    public ShrunkenButton(Context context,
+                               @IntRange(from = 0, to = 100) int clickedStatePercentage,
+                               @IntRange(from = 1) int durationInMillis,
+                               boolean isIdleAnimationEnabled)
     {
         super(context);
-        this.clickedStatePercentage = ((float) clickedStatePercentage) / 100;
-        this.durationInMillis = durationInMillis;
+        init(null);
+        setClickedStatePercentage(clickedStatePercentage);
+        setDurationInMillis(durationInMillis);
+        setIdleAnimationEnabled(isIdleAnimationEnabled);
     }
 
     /**
@@ -67,20 +83,6 @@ public class ShrunkenButton extends Button
     }
 
     /**
-     * A default constructor for declaring in XML files.
-     *
-     * @param context      Context in purpose to initiate the view.
-     * @param attrs        The attributes that given in the XML declaration.
-     * @param defStyleAttr The style attributes that given in the XML declaration.
-     * @param defStyleRes  The style resources that given in the XML declaration.
-     */
-    public ShrunkenButton(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes)
-    {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        init(attrs);
-    }
-
-    /**
      * An init method that call when the view initiating and initiate the class members.
      *
      * @param attrs The attributes that given in the XML declaration.
@@ -88,14 +90,29 @@ public class ShrunkenButton extends Button
     private void init(@Nullable AttributeSet attrs)
     {
         //Setting the default values
-        this.clickedStatePercentage = 0.9f;
-        this.durationInMillis = 100;
+        this.idleAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.idle_animation);
         if (attrs != null)
         {
-            TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.ShrunkenButton);
-            this.clickedStatePercentage = typedArray.getInteger(R.styleable.ShrunkenButton_btn_clicked_state_percent, 90);
-            this.clickedStatePercentage /= 100;
-            this.durationInMillis = typedArray.getInteger(R.styleable.ShrunkenButton_btn_duration_in_millis, 100);
+            TypedArray typedArray =
+                    getContext().obtainStyledAttributes(attrs, R.styleable.ShrunkenButton);
+
+            setClickedStatePercentage(typedArray.getInteger(
+                    R.styleable.ShrunkenButton_btn_clicked_state_percent,
+                    DEFAULT_CLICKED_STATE_PERCENTAGE));
+
+            setDurationInMillis(typedArray.getInteger(
+                    R.styleable.ShrunkenButton_btn_duration_in_millis,
+                    DEFAULT_DURATION_IN_MILLIS));
+
+            setIdleAnimationEnabled(typedArray.getBoolean(
+                    R.styleable.ShrunkenButton_btn_idle_animation,
+                    DEFAULT_IDLE_ANIMATION_ENABLE));
+        }
+        else
+        {
+            setClickedStatePercentage(DEFAULT_CLICKED_STATE_PERCENTAGE);
+            setDurationInMillis(DEFAULT_DURATION_IN_MILLIS);
+            setIdleAnimationEnabled(DEFAULT_IDLE_ANIMATION_ENABLE);
         }
     }
 
@@ -155,5 +172,23 @@ public class ShrunkenButton extends Button
     public void setDurationInMillis(@IntRange(from = 1) int durationInMillis)
     {
         this.durationInMillis = durationInMillis;
+    }
+
+    public void setIdleAnimationEnabled(boolean idleAnimationEnabled)
+    {
+        this.isIdleAnimationEnabled = idleAnimationEnabled;
+        idleAnimationCheck();
+    }
+
+    private void idleAnimationCheck()
+    {
+        if(this.isIdleAnimationEnabled)
+        {
+            this.startAnimation(this.idleAnimation);
+        }
+        else
+        {
+            this.clearAnimation();
+        }
     }
 }
