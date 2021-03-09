@@ -4,7 +4,7 @@ This is my library
 
 How to implement the library?
 
-STEP 1: Go to your project gradle ("build.gradle( < ProjectName > )")
+STEP 1: Go to your project gradle file ("build.gradle( < ProjectName > )")
     
 1.2: Add the line below to the "allprojects" section -> "repositories" section
 
@@ -25,7 +25,7 @@ Its should look like this:
     }
 
 
-STEP 2: Go to your app gradle ("build.gradle(app)")
+STEP 2: Go to your app gradle file ("build.gradle(app)")
 
 2.2: Add the line below to "dependencies" section
 
