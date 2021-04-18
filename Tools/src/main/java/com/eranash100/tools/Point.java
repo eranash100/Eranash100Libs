@@ -12,6 +12,7 @@ public class Point
     public static final int MATH_OPERATION_MULTIPLY = 12;
     public static final int MATH_OPERATION_DIVIDE = 13;
     public static final int MATH_OPERATION_MODULE = 14;
+    private static final String STRING_FORMAT_REGEX = ":";
 
     public int x, y;
 
@@ -149,6 +150,17 @@ public class Point
         return this;
     }
 
+    public String getAsStringFormat()
+    {
+        return this.x + STRING_FORMAT_REGEX + this.y;
+    }
+
+    public void setFromStringFormat(String pointAsStringFormat)
+    {
+        String[] strPointParts = pointAsStringFormat.split(STRING_FORMAT_REGEX);
+        this.set(Integer.parseInt(strPointParts[0]), Integer.parseInt(strPointParts[1]));
+    }
+
     public static Point mathOperation(
             @NonNull Point point1
             , @NonNull Point point2
@@ -170,6 +182,12 @@ public class Point
     public static boolean isPointInsideCircle(Point point, Point circleCenter, int radius)
     {
         return (point.getDistanceTo(circleCenter) <= radius);
+    }
+
+    public static Point getFromStringFormat(String pointAsStringFormat)
+    {
+        String[] strPointParts = pointAsStringFormat.split(STRING_FORMAT_REGEX);
+        return new Point(Integer.parseInt(strPointParts[0]), Integer.parseInt(strPointParts[1]));
     }
 
     public String toString()
