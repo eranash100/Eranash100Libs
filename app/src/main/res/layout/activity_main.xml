@@ -88,11 +88,24 @@
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
     <com.eranash100.shrunkenviews.ShrunkenToggleButton
+        android:id="@+id/shrunkenToggleButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/shrunkenSwitch" />
+
+    <com.eranash100.tools.RollingTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:start_value="-500"
+        app:end_value="1250"
+        app:duration_in_millis="4000"
+        app:with_commas="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shrunkenToggleButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
